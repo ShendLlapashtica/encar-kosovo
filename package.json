@@ -1,0 +1,13 @@
+{
+  "name": "encar-albania",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Tregu i makinave shqip - Albanian car marketplace powered by Encar Korea",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}

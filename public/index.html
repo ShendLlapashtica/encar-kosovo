@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="sq">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EncarAL — Makina Luksoze nga Koreja</title>
+  <meta name="description"
+    content="Gjej makinën tënde të ëndrrave nga Koreja e Jugut. Çmime të shkëlqyera, cilësi premium. BMW, Audi, Mercedes, Porsche dhe më shumë.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #e8763a;
+      --accent-hover: #d4622b;
+      --accent-glow: rgba(232, 118, 58, 0.25);
+      --bg-deep: #0a0a0f;
+      --bg-primary: #111118;
+      --bg-card: #1a1a24;
+      --bg-card-hover: #222233;
+      --bg-input: #15151f;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --text-muted: #55556a;
+      --success: #34d399;
+      --danger: #f87171;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-xs: 6px;
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════════════════════════════════ HEADER ═══════════════════════════════════════ */
+    header {
+      background: rgba(17, 17, 24, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-accent {
+      color: var(--accent);
+    }
+
+    .logo-flag {
+      background: linear-gradient(135deg, #e8763a, #c74e28);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-stats {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .header-stats .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--success);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 4px rgba(52, 211, 153, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 12px rgba(52, 211, 153, 0.8);
+      }
+    }
+
+    /* ═══════════════════════════════════════ FILTERS BAR ═══════════════════════════════════════ */
+    .filters-section {
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+    }
+
+    .filters-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .filter-select {
+      height: 42px;
+      padding: 0 36px 0 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      transition: var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    .filter-select:hover {
+      border-color: var(--border-hover);
+    }
+
+    .filter-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .filter-select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-search-main {
+      height: 42px;
+      padding: 0 28px;
+      background: linear-gradient(135deg, var(--accent), #c74e28);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-search-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-search-main:active {
+      transform: translateY(0);
+    }
+
+    .btn-reset {
+      height: 42px;
+      padding: 0 18px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-reset:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    /* ═══════════════════════════════════════ RESULTS BAR ═══════════════════════════════════════ */
+    .content-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+    }
+
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .results-count {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .results-count strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .sort-select {
+      padding: 8px 32px 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      outline: none;
+    }
+
+    .sort-select:focus {
+      border-color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════ CAR GRID ═══════════════════════════════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .car-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .car-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .car-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .car-card:hover .car-thumb img {
+      transform: scale(1.05);
+    }
+
+    .car-thumb .no-img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      opacity: 0.3;
+    }
+
+    .car-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--success);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 5px;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .car-info {
+      padding: 14px 16px 16px;
+    }
+
+    .car-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .car-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .car-price {
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #f0a060);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .car-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    /* ═══════════════════════════════════════ SKELETON LOADING ═══════════════════════════════════════ */
+    .loading-spinner {
+      grid-column: 1/-1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      gap: 1rem;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .skeleton-grid {
+      grid-column: 1/-1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .skeleton {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .skeleton-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(90deg, #1a1a2e 25%, #222240 50%, #1a1a2e 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .skeleton-body {
+      padding: 14px 16px 16px;
+    }
+
+    .skeleton-line {
+      height: 12px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.04) 75%);
+      background-size: 200% 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .skeleton-line.w60 {
+      width: 60%;
+    }
+
+    .skeleton-line.w80 {
+      width: 80%;
+    }
+
+    .skeleton-line.w40 {
+      width: 40%;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0
+      }
+
+      100% {
+        background-position: -200% 0
+      }
+    }
+
+    /* ═══════════════════════════════════════ EMPTY / ERROR ═══════════════════════════════════════ */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 5rem 1rem;
+      color: var(--text-secondary);
+    }
+
+    .empty-state .emoji {
+      font-size: 56px;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .empty-state .retry-btn {
+      margin-top: 1.5rem;
+      padding: 10px 24px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .empty-state .retry-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* ═══════════════════════════════════════ PAGINATION ═══════════════════════════════════════ */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .page-btn.active {
+      background: linear-gradient(135deg, var(--accent), #c74e28);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════ MODAL ═══════════════════════════════════════ */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      overflow-y: auto;
+      padding: 2rem 1rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      animation: fade-in 0.2s ease;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      animation: modal-slide 0.3s ease;
+    }
+
+    @keyframes modal-slide {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-imgs {
+      position: relative;
+    }
+
+    .modal-img-main {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: block;
+    }
+
+    .modal-img-placeholder {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      opacity: 0.3;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-year {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .modal-price {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), #f0a060);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+
+    .modal-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+
+    .spec-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
+
+    .spec-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent), #c74e28);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+    }
+
+    /* ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════ RESPONSIVE ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      header {
+        padding: 0 1rem;
+      }
+
+      .filters-section {
+        padding: 1rem;
+      }
+
+      .filters-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .content-section {
+        padding: 1rem;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+      }
+
+      .car-info {
+        padding: 10px 12px 12px;
+      }
+
+      .car-name {
+        font-size: 13px;
+      }
+
+      .car-price {
+        font-size: 17px;
+      }
+
+      .modal {
+        max-width: 95vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+    }
+
+    /* ═══════════════════════════════════════ HERO ═══════════════════════════════════════ */
+    .hero-section {
+      position: relative;
+      background: #0a0a0f;
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1920&q=80') center 40% / cover no-repeat;
+      opacity: 0.22;
+      filter: saturate(0.35) brightness(0.9);
+      z-index: 0;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(232, 118, 58, 0.18) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(10,10,15,0.55) 0%, rgba(10,10,15,0.92) 60%, #0a0a0f 100%);
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-glass-card {
+      background: rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 28px;
+      padding: 3.5rem 3rem 2.5rem;
+      box-shadow: 0 8px 64px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -2px;
+      line-height: 1.06;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent), #f5a86a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ──── Hero Search Bar ──── */
+    .hero-search-wrap {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-search-glass {
+      display: flex;
+      align-items: center;
+      max-width: 560px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 6px 6px 6px 20px;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-search-glass:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow), 0 4px 32px rgba(0,0,0,0.4);
+    }
+
+    .hero-search-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .hero-search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+
+    .hero-search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .hero-search-input::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    .hero-search-btn {
+      flex-shrink: 0;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, var(--accent), #c74e28);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+
+    .hero-search-btn:hover {
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transform: scale(1.03);
+    }
+
+    /* ──── Stats row ──── */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .hero-stat + .hero-stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 32px;
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-stat-num {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -1.5px;
+      transition: all 0.4s ease;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* ──── Brand chips ──── */
+    .brand-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .brand-chip {
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(232, 118, 58, 0.12);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-section { padding: 3.5rem 1rem 2.5rem; }
+      .hero-glass-card { padding: 2.5rem 1.5rem 2rem; border-radius: 20px; }
+      .hero-stats { gap: 0; }
+      .hero-stat { padding: 0 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-search-glass { padding: 5px 5px 5px 16px; }
+      .hero-search-btn { padding: 9px 18px; font-size: 13px; }
+    }
+
+    /* ═══════════════════════════════════════ LOAD MORE ═══════════════════════════════════════ */
+    .load-more-btn {
+      padding: 14px 40px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .load-more-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .load-more-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    /* ═══════════════════════════════════════ MODAL ENHANCED ═══════════════════════════════════════ */
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 720px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      animation: modal-slide 0.3s ease;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-img-main {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-img-placeholder {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      opacity: 0.3;
+    }
+
+    .modal-scroll-body {
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 1.5rem 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .spec-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-history-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 6px;
+    }
+
+    .history-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .history-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 2px;
+    }
+
+    .history-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .history-val.good { color: var(--success); }
+    .history-val.warn { color: #fbbf24; }
+
+    @media (max-width: 600px) {
+      .spec-grid-3 { grid-template-columns: 1fr 1fr; }
+      .modal-img-main, .modal-img-placeholder { height: 260px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        Encar<span class="logo-accent">.</span>AL
+        <span class="logo-flag">🇦🇱</span>
+      </a>
+      <div class="header-stats">
+        <span><span class="dot"></span>Live nga Koreja</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-glass-card">
+        <div class="hero-eyebrow">Direkt nga Korea e Jugut · Live</div>
+        <h1 class="hero-title">Zbulo <span>Makinën Tënde</span><br>Luksoze</h1>
+        <p class="hero-sub">Mijëra makina premium direkt nga tregjet e Koresë. Çmime reale, pa ndërmjetës.</p>
+
+        <!-- SEO Search Bar -->
+        <div class="hero-search-wrap">
+          <div class="hero-search-glass">
+            <span class="hero-search-icon">🔍</span>
+            <input
+              id="heroSearch"
+              type="search"
+              class="hero-search-input"
+              placeholder="Kërko BMW, Mercedes, Audi 3 Series..."
+              autocomplete="off"
+              aria-label="Kërko makinë"
+            />
+            <button class="hero-search-btn" onclick="heroSearchGo()">Kërko</button>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="heroStatCount">5,000+</span>
+            <span class="hero-stat-label">Makina Live</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">26</span>
+            <span class="hero-stat-label">Marka Premium</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">Live</span>
+            <span class="hero-stat-label">Çmime Reale</span>
+          </div>
+        </div>
+
+        <div class="brand-chips">
+          <button class="brand-chip" onclick="selectBrand('BMW')">BMW</button>
+          <button class="brand-chip" onclick="selectBrand('Mercedes-Benz')">Mercedes-Benz</button>
+          <button class="brand-chip" onclick="selectBrand('Audi')">Audi</button>
+          <button class="brand-chip" onclick="selectBrand('Porsche')">Porsche</button>
+          <button class="brand-chip" onclick="selectBrand('Genesis')">Genesis</button>
+          <button class="brand-chip" onclick="selectBrand('Hyundai')">Hyundai</button>
+          <button class="brand-chip" onclick="selectBrand('Kia')">Kia</button>
+          <button class="brand-chip" onclick="selectBrand('Lexus')">Lexus</button>
+          <button class="brand-chip" onclick="selectBrand('Land Rover')">Land Rover</button>
+          <button class="brand-chip" onclick="selectBrand('Volvo')">Volvo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FILTERS ═══════════ -->
+  <section class="filters-section">
+    <div class="filters-inner">
+      <div class="filters-grid">
+        <div class="filter-group">
+          <span class="filter-label">Marka</span>
+          <select class="filter-select" id="filterMarka">
+            <option value="">Të gjitha</option>
+            <option value="Audi">Audi</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes-Benz">Mercedes Benz</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Peugeot">Peugeot</option>
+            <option value="Maserati">Maserati</option>
+            <option value="Bentley">Bentley</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Mini">Mini Cooper</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Kia">Kia</option>
+            <option value="Genesis">Genesis</option>
+            <option value="SsangYong">SsangYong</option>
+            <option value="Renault">Renault</option>
+            <option value="Ford">Ford</option>
+            <option value="Opel">Opel</option>
+            <option value="Seat">Seat</option>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Chevrolet">Chevrolet</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Modeli</span>
+          <select class="filter-select" id="filterModel">
+            <option value="">Të gjitha</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Karburanti</span>
+          <select class="filter-select" id="filterFuel">
+            <option value="">Të gjitha</option>
+            <option value="benzin">Benzin</option>
+            <option value="dizel">Dizel</option>
+            <option value="elektrik">Elektrik</option>
+            <option value="hibrid">Hibrid</option>
+            <option value="lpg">LPG</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Viti nga</span>
+          <select class="filter-select" id="filterYearFrom">
+            <option value="">Viti nga</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Viti deri</span>
+          <select class="filter-select" id="filterYearTo">
+            <option value="">Viti deri</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">KM deri</span>
+          <select class="filter-select" id="filterKmTo">
+            <option value="">KM deri</option>
+            <option value="10000">10,000 KM</option>
+            <option value="20000">20,000 KM</option>
+            <option value="30000">30,000 KM</option>
+            <option value="50000">50,000 KM</option>
+            <option value="75000">75,000 KM</option>
+            <option value="100000">100,000 KM</option>
+            <option value="150000">150,000 KM</option>
+            <option value="200000">200,000 KM</option>
+            <option value="250000">250,000 KM</option>
+            <option value="300000">300,000 KM</option>
+          </select>
+        </div>
+
+        <div class="filter-group" style="display:flex; flex-direction:row; gap:8px; align-items:flex-end;">
+          <button class="btn-search-main" id="btnSearch" onclick="doSearch()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            Kërko
+          </button>
+          <button class="btn-reset" onclick="resetFilters()">Pastro</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CONTENT ═══════════ -->
+  <div class="content-section">
+    <div class="results-bar">
+      <div class="results-count" id="resultsCount">Duke ngarkuar makinat...</div>
+      <select class="sort-select" id="sortSelect" onchange="sortAndRender()">
+        <option value="newest">Më të reja</option>
+        <option value="price_asc">Çmimi ↑ (më i lirë)</option>
+        <option value="price_desc">Çmimi ↓ (më i shtrenjtë)</option>
+        <option value="km_asc">Kilometrazh ↑</option>
+        <option value="year_desc">Viti ↓ (më i ri)</option>
+      </select>
+    </div>
+
+    <div class="grid" id="carGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- ═══════════ MODAL ═══════════ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <footer>
+    EncarAL &copy; 2025 — Makina luksoze nga Koreja e Jugut për tregun shqiptar.
+    Të dhënat nga <a href="https://www.encar.com" target="_blank">Encar.com</a>
+  </footer>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════════
+       EncarAL — Albanian Car Marketplace Frontend
+       ═══════════════════════════════════════════════════════════════ */
+
+    const API_BASE = '/api/cars';
+    const KRW_TO_EUR = 0.00067;
+    const API_COUNT = 500;
+
+    // Korean → Albanian translation maps
+    const FUEL_LABELS = {
+      '가솔린': 'Benzin', '디젤': 'Dizel', '하이브리드': 'Hibrid',
+      '전기': 'Elektrik', 'LPG': 'LPG', '가솔린+전기': 'Hibrid Plug-in',
+      '디젤+전기': 'Hibrid Dizel', 'gasoline': 'Benzin', 'diesel': 'Dizel',
+      'hybrid': 'Hibrid', 'electric': 'Elektrik'
+    };
+    const TRANS_LABELS = {
+      '오토': 'Automatik', '수동': 'Manual', 'A': 'Automatik', 'M': 'Manual',
+      'Auto': 'Automatik', 'M/T': 'Manual', 'automatic': 'Automatik', 'manual': 'Manual'
+    };
+    const COLOR_LABELS = {
+      '검은색': 'E zezë', '검정': 'E zezë', '블랙': 'E zezë',
+      '흰색': 'E bardhë', '화이트': 'E bardhë',
+      '은색': 'Argjendtë', '실버': 'Argjendtë',
+      '회색': 'Gri', '그레이': 'Gri',
+      '빨간색': 'E kuqe', '레드': 'E kuqe',
+      '파란색': 'E kaltër', '블루': 'E kaltër',
+      '남색': 'Blu i errët', '네이비': 'Blu i errët',
+      '금색': 'E artë', '골드': 'E artë',
+      '갈색': 'Kafe', '브라운': 'Kafe',
+      '주황색': 'Portokalli', '오렌지': 'Portokalli',
+      '노란색': 'E verdhë', '옐로우': 'E verdhë',
+      '녹색': 'E gjelbër', '그린': 'E gjelbër',
+      '보라색': 'Vjollcë', '퍼플': 'Vjollcë',
+      '하늘색': 'Blu qielli', '민트': 'Menta'
+    };
+
+    // State
+    let allCars = [];
+    let filtered = [];
+    let displayCount = 30;
+    const SHOW_STEP = 30;
+    let isLoading = false;
+    let totalFromApi = 0;
+    let currentKeyword = '';
+
+    // ─── Model options per manufacturer ───
+    const MODEL_MAP = {
+      'Audi': ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'e-tron', 'TT', 'RS'],
+      'BMW': ['1 Series', '2 Series', '3 Series', '4 Series', '5 Series', '6 Series', '7 Series', '8 Series', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'Z4', 'i3', 'i4', 'iX'],
+      'Mercedes-Benz': ['A-Class', 'B-Class', 'C-Class', 'E-Class', 'S-Class', 'CLA', 'CLS', 'GLA', 'GLB', 'GLC', 'GLE', 'GLS', 'G-Class', 'EQC', 'EQE', 'EQS'],
+      'Volkswagen': ['Golf', 'Polo', 'Passat', 'Tiguan', 'Touareg', 'Arteon', 'T-Roc', 'ID.4'],
+      'Porsche': ['911', 'Cayenne', 'Macan', 'Panamera', 'Taycan', '718'],
+      'Land Rover': ['Range Rover', 'Range Rover Sport', 'Defender', 'Discovery', 'Evoque', 'Velar'],
+      'Volvo': ['S60', 'S90', 'V60', 'V90', 'XC40', 'XC60', 'XC90', 'C40'],
+      'Hyundai': ['Sonata', 'Tucson', 'Santa Fe', 'Palisade', 'Kona', 'Ioniq', 'Ioniq 5', 'Ioniq 6', 'Grandeur', 'Avante', 'i30', 'Venue', 'Casper', 'Staria'],
+      'Kia': ['K5', 'K8', 'K9', 'Sportage', 'Sorento', 'Carnival', 'Seltos', 'Niro', 'EV6', 'Stinger', 'Soul', 'Rio'],
+      'Genesis': ['G70', 'G80', 'G90', 'GV60', 'GV70', 'GV80'],
+      'Toyota': ['Camry', 'Corolla', 'RAV4', 'Prius', 'Highlander', 'Land Cruiser', 'Supra'],
+      'Honda': ['Civic', 'Accord', 'CR-V', 'HR-V', 'Pilot'],
+      'Lexus': ['ES', 'IS', 'LS', 'RX', 'NX', 'UX', 'LC', 'LX'],
+      'Chevrolet': ['Malibu', 'Trax', 'Trailblazer', 'Equinox', 'Spark', 'Bolt'],
+      'SsangYong': ['Torres', 'Korando', 'Rexton', 'Tivoli'],
+      'Renault': ['SM6', 'QM6', 'Arkana', 'Clio', 'Megane'],
+      'Ford': ['Mustang', 'Explorer', 'Ranger', 'Focus', 'Escape'],
+      'Mini': ['Cooper', 'Countryman', 'Clubman'],
+      'Ferrari': ['F8', 'Roma', 'SF90', '812', '296'],
+      'Lamborghini': ['Urus', 'Huracan', 'Aventador', 'Revuelto'],
+      'Bentley': ['Continental GT', 'Bentayga', 'Flying Spur'],
+      'Maserati': ['Ghibli', 'Levante', 'Quattroporte', 'MC20', 'Grecale'],
+      'Peugeot': ['208', '308', '3008', '5008', '508'],
+      'Opel': ['Corsa', 'Astra', 'Mokka', 'Grandland'],
+      'Seat': ['Leon', 'Ibiza', 'Ateca', 'Arona'],
+      'Suzuki': ['Swift', 'Vitara', 'Jimny', 'S-Cross']
+    };
+
+    // ─── Populate year dropdowns ───
+    function populateYears() {
+      const currentYear = new Date().getFullYear();
+      const yearFromSel = document.getElementById('filterYearFrom');
+      const yearToSel = document.getElementById('filterYearTo');
+      for (let y = currentYear; y >= 2010; y--) {
+        yearFromSel.add(new Option(y, y));
+        yearToSel.add(new Option(y, y));
+      }
+    }
+
+    // ─── Update model dropdown when manufacturer changes ───
+    function updateModels() {
+      const marka = document.getElementById('filterMarka').value;
+      const modelSel = document.getElementById('filterModel');
+      modelSel.innerHTML = '<option value="">Të gjitha</option>';
+      if (marka && MODEL_MAP[marka]) {
+        MODEL_MAP[marka].forEach(m => {
+          modelSel.add(new Option(m, m));
+        });
+      }
+    }
+
+    document.getElementById('filterMarka').addEventListener('change', () => { updateModels(); applyClientFilters(); });
+    document.getElementById('filterModel').addEventListener('change', applyClientFilters);
+    document.getElementById('filterFuel').addEventListener('change', applyClientFilters);
+    document.getElementById('filterYearFrom').addEventListener('change', applyClientFilters);
+    document.getElementById('filterYearTo').addEventListener('change', applyClientFilters);
+    document.getElementById('filterKmTo').addEventListener('change', applyClientFilters);
+
+    // ─── Price / KM / Year formatters ───
+    function eur(krwUnit) { return Math.round(krwUnit * 10000 * KRW_TO_EUR); }
+    function fmtEur(e) { return '€' + e.toLocaleString('de-DE'); }
+    function fmtKm(k) { return Number(k).toLocaleString('de-DE') + ' km'; }
+    function fmtYear(y) { return y ? String(y).slice(0, 4) : ''; }
+    function imgUrl(photoPath) {
+      if (!photoPath) return null;
+      return `https://ci.encar.com${photoPath}001.jpg`;
+    }
+
+    // Encar DSL fuel map (Albanian/English → Korean)
+    const ENCAR_FUEL = {
+      'diesel':'디젤','dizel':'디젤','benzin':'가솔린','benzine':'가솔린',
+      'gasoline':'가솔린','elektrik':'전기','electric':'전기',
+      'hibrid':'하이브리드','hybrid':'하이브리드','lpg':'LPG'
+    };
+
+    // ─── Fetch directly from Encar via allorigins proxy (no server required) ───
+    async function fetchCars() {
+      if (isLoading) return;
+      isLoading = true;
+      allCars = [];
+      displayCount = SHOW_STEP;
+      showSkeletons();
+
+      const manufacturer = document.getElementById('filterMarka').value;
+      const fuel         = document.getElementById('filterFuel').value;
+      const yearFrom     = document.getElementById('filterYearFrom').value;
+      const yearTo       = document.getElementById('filterYearTo').value;
+      const kmTo         = document.getElementById('filterKmTo').value;
+
+      // Build Encar DSL: (And.Hidden.N._.COND1._.COND2.)
+      const parts = [];
+      if (manufacturer) parts.push(`Manufacturer.${manufacturer}`);
+      if (fuel) parts.push(`FuelType.${ENCAR_FUEL[fuel.toLowerCase().trim()] || fuel}`);
+      if (yearFrom || yearTo) parts.push(`Year.range(${yearFrom || 2000}..${yearTo || 2027})`);
+      if (kmTo) parts.push(`Mileage.range(0..${kmTo})`);
+
+      const q = parts.length > 0
+        ? `(And.Hidden.N._.${parts.join('._.')}.)`
+        : `(And.Hidden.N.)`;
+
+      const encarUrl = `https://api.encar.com/search/car/list/general?${new URLSearchParams({
+        count: 'true', q, sr: `|ModifiedDate|0|${API_COUNT}`, inav: '|Metadata|Sort'
+      })}`;
+
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(encarUrl)}`;
+      console.log('[Encar] q:', q);
+
+      try {
+        const r = await fetch(proxyUrl);
+        if (!r.ok) throw new Error(`Proxy HTTP ${r.status}`);
+        const wrapper = await r.json();
+        if (wrapper.status?.http_code === 403) throw new Error('Encar API bllokoi kërkesën (403). Provo përsëri.');
+        if (!wrapper.contents) throw new Error('Gabim i papritur nga serveri. Provo përsëri.');
+
+        let data;
+        try { data = JSON.parse(wrapper.contents); }
+        catch { throw new Error('Gabim i papritur nga serveri. Provo përsëri.'); }
+
+        if (!data.SearchResults) throw new Error('Nuk u morën të dhëna. Provo përsëri.');
+
+        allCars = data.SearchResults || [];
+        totalFromApi = data.Count || allCars.length;
+
+        if (data.Count) {
+          const el = document.getElementById('heroStatCount');
+          if (el) el.textContent = Number(data.Count).toLocaleString('de-DE') + '+';
+        }
+
+        applyClientFilters();
+      } catch (e) {
+        console.error('[Frontend] Error:', e);
+        showError(e.message);
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    // Flexible brand matching: handles 'Mercedes-Benz' vs '벤츠' etc.
+    const BRAND_ALIASES = {
+      'BMW': ['bmw'],
+      'Mercedes-Benz': ['mercedes', '메르세데스', 'benz', '벤츠'],
+      'Audi': ['audi', '아우디'],
+      'Volkswagen': ['volkswagen', 'vw', '폭스바겐'],
+      'Porsche': ['porsche', '포르쉐'],
+      'Land Rover': ['land rover', '랜드로버'],
+      'Volvo': ['volvo', '볼보'],
+      'Mini': ['mini', '미니'],
+      'Hyundai': ['hyundai', '현대'],
+      'Kia': ['kia', '기아'],
+      'Genesis': ['genesis', '제네시스'],
+      'SsangYong': ['ssangyong', '쌍용'],
+      'Renault': ['renault', '르노', 'samsung', '삼성'],
+      'Chevrolet': ['chevrolet', '쉐보레', 'daewoo', '대우'],
+      'Toyota': ['toyota', '토요타'],
+      'Honda': ['honda', '혼다'],
+      'Lexus': ['lexus', '렉서스'],
+      'Ford': ['ford', '포드'],
+      'Maserati': ['maserati', '마세라티'],
+      'Bentley': ['bentley', '벤틀리'],
+      'Ferrari': ['ferrari', '페라리'],
+      'Lamborghini': ['lamborghini', '람보르기니'],
+      'Peugeot': ['peugeot', '푸조'],
+      'Opel': ['opel', '오펠'],
+      'Seat': ['seat', '세아트'],
+      'Suzuki': ['suzuki', '스즈키'],
+    };
+
+    function matchesBrand(c, marka) {
+      const maker = (c.Manufacturer || c.Maker || '').toLowerCase();
+      const aliases = BRAND_ALIASES[marka] || [marka.toLowerCase()];
+      return aliases.some(a => maker.includes(a));
+    }
+
+    function applyClientFilters() {
+      const marka = document.getElementById('filterMarka').value;
+      const modelFilter = document.getElementById('filterModel').value.toLowerCase();
+      const fuel = document.getElementById('filterFuel').value;
+      const kmTo = document.getElementById('filterKmTo').value;
+      const yearFrom = document.getElementById('filterYearFrom').value;
+      const yearTo = document.getElementById('filterYearTo').value;
+
+      const fuelKo = {
+        'benzin': '가솔린', 'dizel': '디젤', 'hibrid': '하이브리드',
+        'elektrik': '전기', 'lpg': 'LPG'
+      };
+
+      filtered = allCars.filter(c => {
+        // Manufacturer filter (client-side, flexible matching)
+        if (marka && !matchesBrand(c, marka)) return false;
+        // Model filter (loose match on Model or Badge field)
+        if (modelFilter) {
+          const m = (c.Model || '').toLowerCase();
+          const b = (c.Badge || '').toLowerCase();
+          if (!m.includes(modelFilter.split(' ')[0]) && !b.includes(modelFilter.split(' ')[0])) return false;
+        }
+        // Fuel filter
+        if (fuel && fuelKo[fuel] && c.FuelType !== fuelKo[fuel]) return false;
+        // KM filter
+        if (kmTo && Number(c.Mileage) > parseInt(kmTo)) return false;
+        // Year filter
+        const carYear = parseInt(fmtYear(c.Year)) || 0;
+        if (yearFrom && carYear < parseInt(yearFrom)) return false;
+        if (yearTo && carYear > parseInt(yearTo)) return false;
+        return true;
+      });
+
+      sortAndRender();
+    }
+
+    function sortAndRender() {
+      const sort = document.getElementById('sortSelect').value;
+
+      if (sort === 'price_asc') filtered.sort((a, b) => a.Price - b.Price);
+      else if (sort === 'price_desc') filtered.sort((a, b) => b.Price - a.Price);
+      else if (sort === 'km_asc') filtered.sort((a, b) => (a.Mileage || 0) - (b.Mileage || 0));
+      else if (sort === 'year_desc') filtered.sort((a, b) => (b.Year || 0) - (a.Year || 0));
+      else filtered.sort((a, b) => (b.Year || 0) - (a.Year || 0));
+
+      displayCount = SHOW_STEP;
+      renderPage();
+    }
+
+    // ─── Render car grid ───
+    function renderPage() {
+      const slice = filtered.slice(0, displayCount);
+
+      document.getElementById('resultsCount').innerHTML =
+        `<strong>${filtered.length.toLocaleString()}</strong> makina u gjetën`;
+
+      if (!slice.length) {
+        document.getElementById('carGrid').innerHTML = `
+      <div class="empty-state">
+        <div class="emoji">🔍</div>
+        <h3>Asnjë makinë nuk u gjet</h3>
+        <p>Provo të ndryshosh filtrat ose kërko një markë tjetër.</p>
+        <button class="retry-btn" onclick="resetFilters()">Pastro filtrat</button>
+      </div>`;
+        document.getElementById('pagination').innerHTML = '';
+        return;
+      }
+
+      document.getElementById('carGrid').innerHTML = slice.map((c, i) => {
+        const price = eur(c.Price);
+        const photo = imgUrl(c.Photo);
+        const maker = c.Manufacturer || c.Maker || '';
+        const model = c.Model || '';
+        const badge = c.Badge || '';
+        const year = fmtYear(c.Year);
+        const fuelLabel = FUEL_LABELS[c.FuelType] || c.FuelType || '';
+        const transLabel = TRANS_LABELS[c.Transmission] || c.Transmission || '';
+        const isNew = parseInt(year) >= 2023;
+
+        return `<div class="car-card" onclick="openModal(${i})">
+      <div class="car-thumb">
+        ${photo
+            ? `<img src="${photo}" alt="${maker} ${model}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=no-img>🚗</div>'">`
+            : `<div class="no-img">🚗</div>`}
+        ${isNew ? '<span class="car-badge">I RI</span>' : ''}
+      </div>
+      <div class="car-info">
+        <div class="car-name">${maker} ${model} ${badge}</div>
+        <div class="car-sub">${year} · ${fuelLabel}</div>
+        <div class="car-price">${fmtEur(price)}</div>
+        <div class="car-tags">
+          ${c.Mileage ? `<span class="tag">${fmtKm(c.Mileage)}</span>` : ''}
+          ${transLabel ? `<span class="tag">${transLabel}</span>` : ''}
+        </div>
+      </div>
+    </div>`;
+      }).join('');
+
+      // Show-more button instead of page buttons
+      if (displayCount < filtered.length) {
+        const remaining = filtered.length - displayCount;
+        document.getElementById('pagination').innerHTML =
+          `<button class="load-more-btn" onclick="showMore()">Shfaq ${Math.min(SHOW_STEP, remaining)} makina të tjera <span style="color:var(--text-muted);font-size:12px">(${remaining} mbetur)</span></button>`;
+      } else {
+        document.getElementById('pagination').innerHTML = '';
+      }
+    }
+
+    function showMore() {
+      displayCount = Math.min(displayCount + SHOW_STEP, filtered.length);
+      renderPage();
+    }
+
+    // ─── Modal ───
+    function openModal(idx) {
+      const c = filtered[idx];
+      if (!c) return;
+      const price = eur(c.Price);
+      const maker = c.Manufacturer || c.Maker || '';
+      const model = c.Model || '';
+      const badge = c.Badge || '';
+      const year = fmtYear(c.Year);
+      const photoUrl = imgUrl(c.Photo);
+      const fuelLabel = FUEL_LABELS[c.FuelType] || c.FuelType || '—';
+      const transLabel = TRANS_LABELS[c.Transmission] || c.Transmission || '—';
+      const colorLabel = COLOR_LABELS[c.Color] || c.Color || '—';
+      const encarUrl = `https://www.encar.com/dc/dc_cardetailview.do?carid=${c.Id}`;
+      const priceKrw = c.Price ? (c.Price * 10000).toLocaleString() + ' ₩' : '—';
+
+      // Extra fields the API may include
+      const engineCc = c.EngineCc || c.Displacement || c.CylinderCc || null;
+      const doors = c.Doors || c.DoorCnt || null;
+      const seats = c.Passengers || c.Seat || c.SeatCnt || null;
+      const region = c.Region || c.Area || null;
+      const oneOwner = c.OneOwner != null ? (c.OneOwner === 'Y' || c.OneOwner === true || c.OneOwner === 1 ? 'Po — Pronar i parë' : 'Jo') : null;
+      const accident = c.Accident != null ? (c.Accident === 'N' || c.Accident === false || c.Accident === 0 ? 'Pa aksidente' : 'Ka pasur aksidente') : null;
+      const accidentGood = accident === 'Pa aksidente';
+      const certified = c.Certified != null ? (c.Certified === 'Y' || c.Certified === true ? 'Certifikuar nga Encar' : 'Jo i certifikuar') : null;
+      const formYear = c.FormYear ? String(c.FormYear).slice(0,4) : null;
+
+      function spec(label, val) {
+        return `<div class="spec"><div class="spec-label">${label}</div><div class="spec-val">${val || '—'}</div></div>`;
+      }
+
+      function histItem(icon, label, val, cls='') {
+        return `<div class="modal-history-item">
+          <span class="history-icon">${icon}</span>
+          <div><div class="history-label">${label}</div><div class="history-val ${cls}">${val}</div></div>
+        </div>`;
+      }
+
+      const historySection = (oneOwner || accident || certified || region) ? `
+        <div class="modal-section-title">Historia &amp; Gjendja</div>
+        ${accident ? histItem('🛡️', 'Aksidente', accident, accidentGood ? 'good' : 'warn') : ''}
+        ${oneOwner ? histItem('👤', 'Pronari', oneOwner) : ''}
+        ${certified ? histItem('✅', 'Certifikimi', certified) : ''}
+        ${region ? histItem('📍', 'Vendndodhja', region) : ''}
+      ` : '';
+
+      const extraSpecs = (engineCc || doors || seats || formYear) ? `
+        <div class="modal-section-title">Të Dhëna Shtesë</div>
+        <div class="spec-grid-3">
+          ${engineCc ? spec('Motori', engineCc + ' cc') : ''}
+          ${doors ? spec('Dyert', doors) : ''}
+          ${seats ? spec('Ulëset', seats) : ''}
+          ${formYear ? spec('Viti fabrikimit', formYear) : ''}
+          ${badge ? spec('Varianti', badge) : ''}
+          ${c.Id ? spec('ID Makine', c.Id) : ''}
+        </div>
+      ` : (badge ? `
+        <div class="modal-section-title">Të Dhëna Shtesë</div>
+        <div class="spec-grid-3">
+          ${spec('Varianti', badge)}
+          ${c.Id ? spec('ID Makine', c.Id) : ''}
+        </div>
+      ` : '');
+
+      document.getElementById('modalContent').innerHTML = `
+    <div class="modal-imgs" style="position:relative;flex-shrink:0">
+      ${photoUrl
+          ? `<img class="modal-img-main" src="${photoUrl}" alt="${maker} ${model}" onerror="this.outerHTML='<div class=modal-img-placeholder>🚗</div>'">`
+          : `<div class="modal-img-placeholder">🚗</div>`}
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-scroll-body">
+      <div class="modal-body">
+        <div class="modal-title">${maker} ${model}${badge ? ' ' + badge : ''}</div>
+        <div class="modal-year">${year} · ${fuelLabel} · ${transLabel}</div>
+        <div class="modal-price">${fmtEur(price)}</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:1.25rem">${priceKrw}</div>
+
+        <div class="modal-section-title">Specifikime Teknike</div>
+        <div class="spec-grid-3">
+          ${spec('Kilometrazhi', c.Mileage ? fmtKm(c.Mileage) : null)}
+          ${spec('Viti', year)}
+          ${spec('Karburanti', fuelLabel)}
+          ${spec('Transmisioni', transLabel)}
+          ${spec('Ngjyra', colorLabel)}
+          ${spec('Çmimi KRW', priceKrw)}
+        </div>
+
+        ${extraSpecs}
+        ${historySection}
+
+        <div class="modal-section-title">Veprimet</div>
+        <div class="modal-actions">
+          <a href="${encarUrl}" target="_blank" class="btn-primary">🔗 Shiko në Encar.com</a>
+          <a href="https://wa.me/?text=${encodeURIComponent(`Jam i interesuar për: ${maker} ${model} ${badge} ${year} — ${fmtEur(price)}\n${encarUrl}`)}" target="_blank" class="btn-secondary">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>`;
+
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    // ─── Loading / Error states ───
+    function showSkeletons() {
+      document.getElementById('resultsCount').textContent = 'Duke ngarkuar...';
+      document.getElementById('carGrid').innerHTML = `<div class="skeleton-grid">` +
+        Array(12).fill(`
+    <div class="skeleton">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line w80"></div>
+        <div class="skeleton-line w60"></div>
+        <div class="skeleton-line w40"></div>
+      </div>
+    </div>`).join('') + '</div>';
+      document.getElementById('pagination').innerHTML = '';
+    }
+
+    function showError(msg) {
+      document.getElementById('resultsCount').textContent = 'Gabim';
+      document.getElementById('carGrid').innerHTML = `
+    <div class="empty-state">
+      <div class="emoji">⚠️</div>
+      <h3>Nuk u lidh me serverin</h3>
+      <p>${msg}</p>
+      <button class="retry-btn" onclick="doSearch()">Provo përsëri</button>
+    </div>`;
+      document.getElementById('pagination').innerHTML = '';
+    }
+
+    function selectBrand(brand) {
+      currentKeyword = '';
+      document.getElementById('heroSearch').value = '';
+      document.getElementById('filterMarka').value = brand;
+      updateModels();
+      displayCount = SHOW_STEP;
+      applyClientFilters();
+      document.querySelector('.content-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ─── Hero Search Bar ───
+    function heroSearchGo() {
+      const val = document.getElementById('heroSearch').value.trim();
+      if (!val) return;
+      currentKeyword = val;
+      // Clear dropdown filters so keyword takes priority
+      document.getElementById('filterMarka').value = '';
+      document.getElementById('filterModel').innerHTML = '<option value="">Të gjitha</option>';
+      displayCount = SHOW_STEP;
+      fetchCars();
+      document.querySelector('.content-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('heroSearch').addEventListener('keydown', e => {
+      if (e.key === 'Enter') heroSearchGo();
+    });
+
+    // ─── Search & Reset ───
+    function doSearch() {
+      currentKeyword = '';
+      document.getElementById('heroSearch').value = '';
+      displayCount = SHOW_STEP;
+      fetchCars();
+    }
+
+    function resetFilters() {
+      currentKeyword = '';
+      document.getElementById('heroSearch').value = '';
+      document.getElementById('filterMarka').value = '';
+      document.getElementById('filterModel').innerHTML = '<option value="">Të gjitha</option>';
+      document.getElementById('filterFuel').value = '';
+      document.getElementById('filterYearFrom').value = '';
+      document.getElementById('filterYearTo').value = '';
+      document.getElementById('filterKmTo').value = '';
+      document.getElementById('sortSelect').value = 'newest';
+      doSearch();
+    }
+
+    // ─── Keyboard shortcut ───
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ─── Init ───
+    populateYears();
+    fetchCars(); // Load all cars on page open
+
+  </script>
+</body>
+
+</html>
