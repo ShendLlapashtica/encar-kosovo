@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EncarAL — Makina Luksoze nga Koreja</title>
+  <title>Auto Korea Blendi — Makina nga Koreja</title>
   <meta name="description"
-    content="Gjej makinën tënde të ëndrrave nga Koreja e Jugut. Çmime të shkëlqyera, cilësi premium. BMW, Audi, Mercedes, Porsche dhe më shumë.">
+    content="Auto Korea Blendi - Shitje makina luksoze nga Koreja. Doganim, transport dhe pagesa ne Kosove. Magjistrale Prishtine–Ferizaj (Gadime) | 044 555 630">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -58,13 +58,12 @@
 
     /* ═══════════════════════════════════════ HEADER ═══════════════════════════════════════ */
     header {
-      background: rgba(17, 17, 24, 0.85);
+      background: rgba(17, 17, 24, 0.97);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 100;
     }
 
@@ -78,38 +77,188 @@
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text-primary);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
       flex-shrink: 0;
-      letter-spacing: -0.5px;
     }
 
-    .logo-accent {
+    .logo-car {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .logo-texts {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-small {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .logo-big {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+    }
+
+    .logo-big span {
       color: var(--accent);
     }
 
-    .logo-flag {
-      background: linear-gradient(135deg, #e8763a, #c74e28);
-      color: #fff;
-      font-size: 10px;
+    /* ─── Nav ─── */
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: var(--radius-xs);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .nav-link.active { color: var(--accent); }
+
+    .nav-link-cta {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--accent), #c74e28);
+      color: #fff !important;
+      border-radius: var(--radius-xs);
+      font-size: 13px;
       font-weight: 700;
-      padding: 3px 7px;
-      border-radius: 5px;
-      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-link-cta:hover { box-shadow: 0 4px 16px var(--accent-glow); transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-left: auto;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .nav-close {
+      display: none;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .nav-close:hover { background: rgba(255,255,255,0.14); }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+
+      .main-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(10,10,15,0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        z-index: 500;
+        margin-left: 0;
+      }
+
+      .main-nav.open { display: flex; }
+
+      .nav-close { display: flex; }
+
+      .nav-link { font-size: 20px; padding: 12px 24px; }
+      .nav-link-cta { font-size: 16px; padding: 14px 28px; margin-top: 0.5rem; }
+    }
+
+    /* ─── Business Strip ─── */
+    .biz-strip {
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 2rem;
+      overflow-x: auto;
+    }
+
+    .biz-strip-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+    }
+
+    .biz-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .biz-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .biz-item a:hover { color: var(--accent); }
+
+    .biz-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+      flex-shrink: 0;
     }
 
     .header-stats {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      font-size: 13px;
-      color: var(--text-secondary);
+      display: none;
     }
 
     .header-stats .dot {
@@ -1231,22 +1380,53 @@
   <header>
     <div class="header-inner">
       <a href="/" class="logo">
-        Encar<span class="logo-accent">.</span>AL
-        <span class="logo-flag">🇦🇱</span>
+        <svg class="logo-car" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="20">
+          <path d="M2 40 L16 40 Q20 30 38 22 L70 14 L110 13 L146 18 Q168 24 182 38 L198 38" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M68 14 Q76 2 100 1 Q126 0 144 14" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="logo-texts">
+          <span class="logo-small">AUTO KOREA</span>
+          <span class="logo-big">BLENDI</span>
+        </div>
       </a>
-      <div class="header-stats">
-        <span><span class="dot"></span>Live nga Koreja</span>
-      </div>
+
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-close" id="navClose" onclick="closeNav()">✕</button>
+        <a href="/" class="nav-link active">Ballina</a>
+        <a href="/customs.html" class="nav-link">Kalkulator Dogane</a>
+        <a href="tel:044555630" class="nav-link-cta">📞 044 555 630</a>
+      </nav>
+
+      <button class="nav-hamburger" id="navHamburger" onclick="openNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- Business Info Strip -->
+  <div class="biz-strip">
+    <div class="biz-strip-inner">
+      <div class="biz-item">
+        📍 <a href="https://www.google.com/maps/search/Gadime+Kosovo" target="_blank" rel="noopener">Magjistrale Prishtinë–Ferizaj (Gadime)</a>
+      </div>
+      <div class="biz-divider"></div>
+      <div class="biz-item">🛃 Doganim &amp; inspektim</div>
+      <div class="biz-divider"></div>
+      <div class="biz-item">🚚 Transport deri në Kosovë</div>
+      <div class="biz-divider"></div>
+      <div class="biz-item">💳 Pagesa në Kosovë</div>
+      <div class="biz-divider"></div>
+      <div class="biz-item">📞 <a href="tel:044555630">044 555 630</a></div>
+    </div>
+  </div>
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero-section">
     <div class="hero-inner">
       <div class="hero-glass-card">
-        <div class="hero-eyebrow">Direkt nga Korea e Jugut · Live</div>
-        <h1 class="hero-title">Zbulo <span>Makinën Tënde</span><br>Luksoze</h1>
-        <p class="hero-sub">Mijëra makina premium direkt nga tregjet e Koresë. Çmime reale, pa ndërmjetës.</p>
+        <div class="hero-eyebrow">Auto Korea Blendi · Direkt nga Korea e Jugut</div>
+        <h1 class="hero-title">Zbulo <span>Makinën Tënde</span><br>nga Koreja</h1>
+        <p class="hero-sub">Makina premium direkt nga tregjet e Koresë. Doganim, transport dhe pagesa — gjithçka ne Kosovë.</p>
 
         <!-- SEO Search Bar -->
         <div class="hero-search-wrap">
@@ -1420,8 +1600,10 @@
   </div>
 
   <footer>
-    EncarAL &copy; 2025 — Makina luksoze nga Koreja e Jugut për tregun shqiptar.
-    Të dhënat nga <a href="https://www.encar.com" target="_blank">Encar.com</a>
+    <div style="margin-bottom:0.75rem;font-size:14px;font-weight:700;color:var(--text-primary)">Auto Korea Blendi</div>
+    <div style="margin-bottom:0.5rem">📍 Magjistrale Prishtinë–Ferizaj (Gadime) &nbsp;|&nbsp; 📞 <a href="tel:044555630">044 555 630</a></div>
+    <div style="margin-bottom:0.5rem">🛃 Doganim &amp; inspektim &nbsp;·&nbsp; 🚚 Transport deri në Kosovë &nbsp;·&nbsp; 💳 Pagesa në Kosovë</div>
+    <div style="margin-top:1rem;font-size:11px">Të dhënat nga <a href="https://www.encar.com" target="_blank">Encar.com</a></div>
   </footer>
 
   <script>
@@ -1734,9 +1916,9 @@
       document.getElementById('carGrid').innerHTML = slice.map((c, i) => {
         const price = eur(c.Price);
         const photo = imgUrl(c.Photo);
-        const maker = c.Manufacturer || c.Maker || '';
-        const model = c.Model || '';
-        const badge = c.Badge || '';
+        const maker = tr(c.Manufacturer || c.Maker || '');
+        const model = tr(c.Model || '');
+        const badge = tr(c.Badge || '');
         const year = fmtYear(c.Year);
         const fuelLabel = FUEL_LABELS[c.FuelType] || c.FuelType || '';
         const transLabel = TRANS_LABELS[c.Transmission] || c.Transmission || '';
@@ -1781,9 +1963,9 @@
       const c = filtered[idx];
       if (!c) return;
       const price = eur(c.Price);
-      const maker = c.Manufacturer || c.Maker || '';
-      const model = c.Model || '';
-      const badge = c.Badge || '';
+      const maker = tr(c.Manufacturer || c.Maker || '');
+      const model = tr(c.Model || '');
+      const badge = tr(c.Badge || '');
       const year = fmtYear(c.Year);
       const photoUrl = imgUrl(c.Photo);
       const fuelLabel = FUEL_LABELS[c.FuelType] || c.FuelType || '—';
@@ -1968,6 +2150,55 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeModal();
     });
+
+    // ─── Korean → English car name translation ───
+    const KO_EN = [
+      ['더 뉴 ', 'The New '], ['더뉴 ', 'The New '],
+      ['뉴 ', 'New '], [' 뉴', ' New'],
+      ['GLE-클래스', 'GLE-Class'], ['GLC-클래스', 'GLC-Class'],
+      ['C-클래스', 'C-Class'], ['E-클래스', 'E-Class'],
+      ['S-클래스', 'S-Class'], ['A-클래스', 'A-Class'],
+      ['B-클래스', 'B-Class'], ['CLA-클래스', 'CLA-Class'],
+      ['CLS-클래스', 'CLS-Class'], ['GLA-클래스', 'GLA-Class'],
+      ['GLB-클래스', 'GLB-Class'], ['GLS-클래스', 'GLS-Class'],
+      ['G-클래스', 'G-Class'], ['클래스', 'Class'],
+      ['5시리즈', '5 Series'], ['3시리즈', '3 Series'],
+      ['7시리즈', '7 Series'], ['1시리즈', '1 Series'],
+      ['2시리즈', '2 Series'], ['4시리즈', '4 Series'],
+      ['6시리즈', '6 Series'], ['8시리즈', '8 Series'],
+      ['시리즈', ' Series'], ['벤츠', 'Mercedes-Benz'],
+      ['플러그인 하이브리드', 'Plug-in Hybrid'], ['플러그인', 'Plug-in'],
+      ['하이브리드', 'Hybrid'], ['투어러', 'Tourer'],
+      ['에디션', 'Edition'], ['스포츠', 'Sport'],
+      ['프리미엄', 'Premium'], ['럭셔리', 'Luxury'],
+      ['라인', 'Line'], ['익스클루시브', 'Exclusive'],
+      ['컴포트', 'Comfort'], ['엘레강스', 'Elegance'],
+      ['아방가르드', 'Avantgarde'], ['어드밴스드', 'Advanced'],
+      ['모던', 'Modern'], ['디자인', 'Design'],
+      ['팩키지', 'Package'], ['패키지', 'Package'],
+      ['테크', 'Tech'], ['세단', 'Sedan'],
+      ['쿠페', 'Coupe'], ['왜건', 'Wagon'],
+      ['컨버터블', 'Convertible'], ['카브리올레', 'Cabriolet'],
+      ['SUV', 'SUV'], ['해치백', 'Hatchback'],
+    ];
+
+    function tr(text) {
+      if (!text) return text;
+      let s = String(text);
+      for (const [ko, en] of KO_EN) s = s.split(ko).join(en);
+      return s.replace(/\s{2,}/g, ' ').trim();
+    }
+
+    // ─── Nav open / close ───
+    function openNav() {
+      document.getElementById('mainNav').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+      document.getElementById('mainNav').classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
     // ─── Init ───
     populateYears();
