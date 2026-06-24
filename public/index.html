@@ -1407,6 +1407,78 @@
       .spec-grid-3 { grid-template-columns: 1fr 1fr; }
       .modal-img-main, .modal-img-placeholder { height: 260px; }
     }
+
+    /* ── Modal landed prices breakdown ── */
+    .modal-landed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-landed-country {
+      border-radius: var(--radius-sm);
+      padding: 13px 14px;
+      border: 1px solid;
+    }
+
+    .modal-landed-country.ks {
+      background: rgba(0,80,180,0.09);
+      border-color: rgba(0,80,180,0.22);
+    }
+
+    .modal-landed-country.al {
+      background: rgba(210,30,30,0.08);
+      border-color: rgba(210,30,30,0.20);
+    }
+
+    .modal-landed-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .modal-landed-total {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .modal-landed-country.ks .modal-landed-total { color: #7ab8f5; }
+    .modal-landed-country.al .modal-landed-total { color: #f5857a; }
+
+    .modal-bk-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.035);
+      font-size: 11px;
+    }
+
+    .modal-bk-row:last-child { border-bottom: none; }
+    .modal-bk-lbl { color: var(--text-muted); }
+    .modal-bk-val { color: var(--text-secondary); font-weight: 600; white-space: nowrap; }
+    .modal-bk-val.cif-v { color: var(--text-primary); font-weight: 700; }
+    .modal-bk-val.total-v { color: var(--text-primary); font-weight: 800; }
+
+    .modal-korea-price {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 500px) {
+      .modal-landed-grid { grid-template-columns: 1fr; }
+      .modal-landed-total { font-size: 18px; }
+    }
   </style>
 </head>
 
@@ -2069,18 +2141,21 @@
       const priceKrw = c.Price ? (c.Price * 10000).toLocaleString() + ' ₩' : '—';
 
       // Extra fields the API may include
-      const engineCc = c.EngineCc || c.Displacement || c.CylinderCc || null;
+      const engineCc = c.CylinderCapacity || c.EngineCc || c.Displacement || c.CylinderCc || null;
       const doors = c.Doors || c.DoorCnt || null;
       const seats = c.Passengers || c.Seat || c.SeatCnt || null;
-      const region = c.Region || c.Area || null;
+      const region = tr(c.Region || c.Area || '');
       const oneOwner = c.OneOwner != null ? (c.OneOwner === 'Y' || c.OneOwner === true || c.OneOwner === 1 ? 'Po — Pronar i parë' : 'Jo') : null;
       const accident = c.Accident != null ? (c.Accident === 'N' || c.Accident === false || c.Accident === 0 ? 'Pa aksidente' : 'Ka pasur aksidente') : null;
       const accidentGood = accident === 'Pa aksidente';
-      const certified = c.Certified != null ? (c.Certified === 'Y' || c.Certified === true ? 'Certifikuar nga Encar' : 'Jo i certifikuar') : null;
+      const certified = c.Certified != null ? (c.Certified === 'Y' || c.Certified === true ? '✅ Certifikuar Encar' : null) : null;
       const formYear = c.FormYear ? String(c.FormYear).slice(0,4) : null;
+      const grade = tr(c.Grade || c.Trim || '');
+      const bodyType = tr(c.BodyType || c.CarType || '');
 
       function spec(label, val) {
-        return `<div class="spec"><div class="spec-label">${label}</div><div class="spec-val">${val || '—'}</div></div>`;
+        if (!val || val === '—') return '';
+        return `<div class="spec"><div class="spec-label">${label}</div><div class="spec-val">${val}</div></div>`;
       }
 
       function histItem(icon, label, val, cls='') {
@@ -2090,31 +2165,33 @@
         </div>`;
       }
 
+      // ── Landed price calculation ──
+      const cc  = engineCc || 0;
+      const yr  = parseInt(year) || new Date().getFullYear();
+      const age = new Date().getFullYear() - yr;
+      const fuel = c.FuelType || '';
+
+      const ksCIF  = price + RORO_EUR + OVERLAND_EUR;
+      const ksDuty = fuel === '전기' ? 0 : ksCIF * 0.10;
+      const ksVAT  = (ksCIF + ksDuty) * 0.18;
+      const ksExc  = _exciseKs(cc, age, fuel);
+      const ksTotal = Math.round(price + RORO_EUR + OVERLAND_EUR + ksDuty + ksVAT + ksExc);
+
+      const alCIF  = price + RORO_EUR;
+      const alDuty = fuel === '전기' ? 0 : alCIF * 0.10;
+      const alVAT  = (alCIF + alDuty) * 0.20;
+      const alExc  = _exciseAl(cc, age, fuel);
+      const alTotal = Math.round(price + RORO_EUR + alDuty + alVAT + alExc);
+
+      const hasLanded = price > 0;
+
       const historySection = (oneOwner || accident || certified || region) ? `
         <div class="modal-section-title">Historia &amp; Gjendja</div>
         ${accident ? histItem('🛡️', 'Aksidente', accident, accidentGood ? 'good' : 'warn') : ''}
         ${oneOwner ? histItem('👤', 'Pronari', oneOwner) : ''}
         ${certified ? histItem('✅', 'Certifikimi', certified) : ''}
-        ${region ? histItem('📍', 'Vendndodhja', region) : ''}
+        ${region ? histItem('📍', 'Vendndodhja (Kore)', region) : ''}
       ` : '';
-
-      const extraSpecs = (engineCc || doors || seats || formYear) ? `
-        <div class="modal-section-title">Të Dhëna Shtesë</div>
-        <div class="spec-grid-3">
-          ${engineCc ? spec('Motori', engineCc + ' cc') : ''}
-          ${doors ? spec('Dyert', doors) : ''}
-          ${seats ? spec('Ulëset', seats) : ''}
-          ${formYear ? spec('Viti fabrikimit', formYear) : ''}
-          ${badge ? spec('Varianti', badge) : ''}
-          ${c.Id ? spec('ID Makine', c.Id) : ''}
-        </div>
-      ` : (badge ? `
-        <div class="modal-section-title">Të Dhëna Shtesë</div>
-        <div class="spec-grid-3">
-          ${spec('Varianti', badge)}
-          ${c.Id ? spec('ID Makine', c.Id) : ''}
-        </div>
-      ` : '');
 
       document.getElementById('modalContent').innerHTML = `
     <div class="modal-imgs" style="position:relative;flex-shrink:0">
@@ -2126,9 +2203,38 @@
     <div class="modal-scroll-body">
       <div class="modal-body">
         <div class="modal-title">${maker} ${model}${badge ? ' ' + badge : ''}</div>
-        <div class="modal-year">${year} · ${fuelLabel} · ${transLabel}</div>
+        <div class="modal-year">${year}${formYear && formYear !== year ? ' (fab. '+formYear+')' : ''} · ${fuelLabel} · ${transLabel}</div>
         <div class="modal-price">${fmtEur(price)}</div>
-        <div style="font-size:13px;color:var(--text-muted);margin-bottom:1.25rem">${priceKrw}</div>
+        <div class="modal-korea-price">Çmimi në Kore: ${priceKrw}</div>
+
+        ${hasLanded ? `
+        <div class="modal-section-title">Çmimi i Plotë me Doganë</div>
+        <div class="modal-landed-grid">
+          <div class="modal-landed-country ks">
+            <div class="modal-landed-header">🇽🇰 Kosovë <span style="font-weight:400;opacity:.6">(kryesor)</span></div>
+            <div class="modal-landed-total">${fmtEur(ksTotal)}</div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Makina (Kore)</span><span class="modal-bk-val">${fmtEur(price)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">RoRo Korea→Durrës</span><span class="modal-bk-val">€1,050</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Durrës→Kosovë</span><span class="modal-bk-val">€280</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl cif-v" style="color:var(--text-secondary)">CIF</span><span class="modal-bk-val cif-v">${fmtEur(ksCIF)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Dogana 10%</span><span class="modal-bk-val">≈${fmtEur(ksDuty)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">TVSH 18%</span><span class="modal-bk-val">≈${fmtEur(ksVAT)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Akciza</span><span class="modal-bk-val">≈${fmtEur(ksExc)}</span></div>
+          </div>
+          <div class="modal-landed-country al">
+            <div class="modal-landed-header">🇦🇱 Shqipëri <span style="font-weight:400;opacity:.6">(Durrës)</span></div>
+            <div class="modal-landed-total">${fmtEur(alTotal)}</div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Makina (Kore)</span><span class="modal-bk-val">${fmtEur(price)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">RoRo Korea→Durrës</span><span class="modal-bk-val">€1,050</span></div>
+            <div class="modal-bk-row" style="padding-bottom:14px;margin-bottom:4px"><span class="modal-bk-lbl" style="opacity:0">&nbsp;</span><span class="modal-bk-val" style="opacity:0">—</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl cif-v" style="color:var(--text-secondary)">CIF</span><span class="modal-bk-val cif-v">${fmtEur(alCIF)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Dogana 10%</span><span class="modal-bk-val">≈${fmtEur(alDuty)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">TVSH 20%</span><span class="modal-bk-val">≈${fmtEur(alVAT)}</span></div>
+            <div class="modal-bk-row"><span class="modal-bk-lbl">Akciza</span><span class="modal-bk-val">≈${fmtEur(alExc)}</span></div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.5rem">≈ vlerësim i përafërt · transport RoRo €1,050 · tokë €280</div>
+        ` : ''}
 
         <div class="modal-section-title">Specifikime Teknike</div>
         <div class="spec-grid-3">
@@ -2137,16 +2243,24 @@
           ${spec('Karburanti', fuelLabel)}
           ${spec('Transmisioni', transLabel)}
           ${spec('Ngjyra', colorLabel)}
-          ${spec('Çmimi KRW', priceKrw)}
+          ${spec('Motori', engineCc ? engineCc + ' cc' : null)}
+          ${spec('Dyert', doors)}
+          ${spec('Ulëset', seats)}
+          ${spec('Tipi', bodyType)}
+          ${spec('Varianti', grade || badge)}
+          ${spec('Viti fabrikimit', formYear && formYear !== year ? formYear : null)}
+          ${spec('ID Encar', c.Id)}
         </div>
 
-        ${extraSpecs}
         ${historySection}
 
         <div class="modal-section-title">Veprimet</div>
         <div class="modal-actions">
-          <a href="${encarUrl}" target="_blank" class="btn-primary">🔗 Shiko në Encar.com</a>
-          <a href="https://wa.me/?text=${encodeURIComponent(`Jam i interesuar për: ${maker} ${model} ${badge} ${year} — ${fmtEur(price)}\n${encarUrl}`)}" target="_blank" class="btn-secondary">💬 WhatsApp</a>
+          <a href="tel:044555630" class="btn-primary">📞 044 555 630</a>
+          <a href="https://wa.me/38344555630?text=${encodeURIComponent('Mirëdita! Jam i interesuar për: ' + maker + ' ' + model + ' ' + badge + ' ' + year + ' — ' + fmtEur(price) + '\n' + encarUrl)}" target="_blank" class="btn-secondary">💬 WhatsApp</a>
+        </div>
+        <div style="margin-top:10px">
+          <a href="${encarUrl}" target="_blank" style="font-size:12px;color:var(--text-muted);text-decoration:none">🔗 Shiko origjinalin në Encar.com</a>
         </div>
       </div>
     </div>`;
