@@ -35,149 +35,29 @@
     }
 
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-deep); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
     /* ── Header ── */
-    header {
-      background: rgba(17, 17, 24, 0.97);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      position: relative;
-      z-index: 100;
-    }
-
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      height: 64px;
-    }
-
-    .logo {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
+    header { background: rgba(17, 17, 24, 0.97); border-bottom: 1px solid var(--border); padding: 0 2rem; position: relative; z-index: 100; }
+    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; height: 64px; }
+    .logo { text-decoration: none; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
     .logo-car { color: var(--accent); flex-shrink: 0; }
-
     .logo-texts { display: flex; flex-direction: column; line-height: 1; }
-
-    .logo-small {
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .logo-big {
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-primary);
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      margin-left: auto;
-    }
-
-    .nav-link {
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-decoration: none;
-      border-radius: var(--radius-xs);
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
+    .logo-small { font-size: 8px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); }
+    .logo-big { font-size: 21px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--text-primary); }
+    .main-nav { display: flex; align-items: center; gap: 0.25rem; margin-left: auto; }
+    .nav-link { padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-xs); transition: var(--transition); white-space: nowrap; }
     .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
     .nav-link.active { color: var(--accent); }
-
-    .nav-link-cta {
-      padding: 8px 16px;
-      background: linear-gradient(135deg, var(--accent), #c74e28);
-      color: #fff;
-      border-radius: var(--radius-xs);
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
+    .nav-link-cta { padding: 8px 16px; background: linear-gradient(135deg, var(--accent), #c74e28); color: #fff; border-radius: var(--radius-xs); font-size: 13px; font-weight: 700; text-decoration: none; transition: var(--transition); white-space: nowrap; }
     .nav-link-cta:hover { box-shadow: 0 4px 16px var(--accent-glow); transform: translateY(-1px); }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      margin-left: auto;
-    }
-
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text-primary);
-      border-radius: 2px;
-    }
-
-    .nav-close {
-      display: none;
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      font-size: 18px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; margin-left: auto; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; }
+    .nav-close { display: none; position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid var(--border); color: var(--text-primary); font-size: 18px; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; align-items: center; justify-content: center; }
 
     @media (max-width: 768px) {
       .nav-hamburger { display: flex; }
-
-      .main-nav {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(10,10,15,0.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        z-index: 500;
-        margin-left: 0;
-      }
-
+      .main-nav { display: none; position: fixed; inset: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; gap: 1rem; z-index: 500; margin-left: 0; }
       .main-nav.open { display: flex; }
       .nav-close { display: flex; }
       .nav-link { font-size: 20px; padding: 12px 24px; }
@@ -185,356 +65,94 @@
     }
 
     /* ── Business Strip ── */
-    .biz-strip {
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border);
-      padding: 0.6rem 2rem;
-      overflow-x: auto;
-    }
-
-    .biz-strip-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      white-space: nowrap;
-    }
-
-    .biz-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      flex-shrink: 0;
-    }
-
+    .biz-strip { background: var(--bg-primary); border-bottom: 1px solid var(--border); padding: 0.6rem 2rem; overflow-x: auto; scrollbar-width: none; }
+    .biz-strip::-webkit-scrollbar { display: none; }
+    .biz-strip-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; white-space: nowrap; }
+    .biz-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; }
     .biz-item a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
     .biz-item a:hover { color: var(--accent); }
     .biz-divider { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
 
-    /* ── Page Content ── */
-    .page-hero {
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
-    }
-
-    .page-hero-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .page-hero-title {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 900;
-      letter-spacing: -1.5px;
-      margin-bottom: 0.75rem;
-    }
-
+    /* ── Page Hero ── */
+    .page-hero { background: var(--bg-primary); border-bottom: 1px solid var(--border); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .page-hero-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .page-hero-title { font-size: clamp(28px, 5vw, 48px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 0.75rem; }
     .page-hero-title span { color: var(--accent); }
+    .page-hero-sub { font-size: 15px; color: var(--text-secondary); max-width: 520px; margin: 0 auto; line-height: 1.6; }
 
-    .page-hero-sub {
-      font-size: 15px;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
+    /* ── Tabs ── */
+    .country-tabs { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+    .tab-btn { flex: 1; padding: 13px 16px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: var(--transition); border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text-secondary); }
+    .tab-btn.active { border-color: var(--accent); background: rgba(232,118,58,0.12); color: var(--accent); }
+    .tab-sub { display: block; font-size: 11px; font-weight: 500; opacity: 0.7; margin-top: 2px; }
 
     /* ── Calculator ── */
-    .calc-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 4rem;
-    }
+    .calc-section { max-width: 940px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 700px) { .calc-grid { grid-template-columns: 1fr; } .country-tabs { flex-direction: column; } }
 
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    @media (max-width: 700px) {
-      .calc-grid { grid-template-columns: 1fr; }
-    }
-
-    .calc-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-    }
-
-    .calc-card-title {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 1rem;
-    }
-
-    .field-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .field-input, .field-select {
-      height: 44px;
-      padding: 0 14px;
-      background: var(--bg-input);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 14px;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .field-input:focus, .field-select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-
-    .field-select {
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      padding-right: 36px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-    }
-
+    .calc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .calc-card-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .field-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+    .field-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+    .field-input, .field-select { height: 44px; padding: 0 14px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-family: inherit; font-size: 14px; outline: none; transition: var(--transition); }
+    .field-input:focus, .field-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .field-select { cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 36px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
     .field-select option { background: var(--bg-card); }
-
-    .field-hint {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .btn-calc {
-      width: 100%;
-      height: 48px;
-      background: linear-gradient(135deg, var(--accent), #c74e28);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: var(--transition);
-      letter-spacing: 0.3px;
-    }
-
-    .btn-calc:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px var(--accent-glow);
-    }
+    .field-hint { font-size: 11px; color: var(--text-muted); }
+    .field-overland { transition: var(--transition); }
+    .btn-calc { width: 100%; height: 48px; background: linear-gradient(135deg, var(--accent), #c74e28); color: #fff; border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); letter-spacing: 0.3px; }
+    .btn-calc:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-glow); }
 
     /* ── Results ── */
-    .results-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-    }
-
-    .result-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
-    }
-
+    .results-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .results-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .results-card-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+    .result-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 1rem; }
     .result-row:last-child { border-bottom: none; }
+    .result-row.cif-row { border-bottom: 1px solid rgba(232,118,58,0.3); }
+    .result-label { font-size: 13px; color: var(--text-secondary); }
+    .result-label small { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .result-val { font-size: 15px; font-weight: 700; color: var(--text-primary); text-align: right; white-space: nowrap; }
+    .result-val.cif-val { color: var(--text-primary); font-size: 16px; }
+    .result-total { margin-top: 1rem; padding: 1rem; background: rgba(232,118,58,0.08); border: 1px solid rgba(232,118,58,0.25); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between; }
+    .result-total-label { font-size: 13px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+    .result-total-label small { display: block; font-size: 11px; font-weight: 400; margin-top: 3px; color: var(--text-muted); }
+    .result-total-val { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, var(--accent), #f0a060); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    .result-label {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
+    /* ── Compare box ── */
+    .compare-box { margin-top: 1rem; padding: 14px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .compare-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 12px; }
+    .compare-row { display: flex; align-items: center; justify-content: space-around; gap: 1rem; }
+    .compare-item { text-align: center; }
+    .compare-flag { font-size: 20px; display: block; margin-bottom: 4px; }
+    .compare-country { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+    .compare-price { font-size: 17px; font-weight: 800; }
+    .compare-price.active { color: var(--accent); }
+    .compare-vs { color: var(--text-muted); font-size: 14px; }
 
-    .result-label small {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .result-val {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .result-total {
-      margin-top: 1rem;
-      padding: 1rem;
-      background: rgba(232,118,58,0.08);
-      border: 1px solid rgba(232,118,58,0.25);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .result-total-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .result-total-val {
-      font-size: 26px;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--accent), #f0a060);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .disclaimer {
-      margin-top: 1rem;
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      padding: 10px 14px;
-      background: var(--bg-input);
-      border-radius: var(--radius-xs);
-      border: 1px solid var(--border);
-    }
-
-    .placeholder-text {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
+    .disclaimer { margin-top: 1rem; font-size: 11px; color: var(--text-muted); line-height: 1.6; padding: 10px 14px; background: var(--bg-input); border-radius: var(--radius-xs); border: 1px solid var(--border); }
+    .placeholder-text { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 14px; }
     .placeholder-icon { font-size: 40px; margin-bottom: 0.75rem; }
 
-    /* ── Services section ── */
-    .services-section {
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      padding: 0 2rem;
-    }
-
-    .services-title {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 600px) {
-      .services-grid { grid-template-columns: 1fr; }
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-    }
-
+    /* ── Services ── */
+    .services-section { max-width: 940px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .services-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 1rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
     .service-icon { font-size: 24px; margin-bottom: 0.5rem; }
+    .service-name { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .service-sub { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-    .service-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-
-    .service-sub {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .contact-bar {
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      padding: 0 2rem;
-    }
-
-    .contact-inner {
-      background: linear-gradient(135deg, rgba(232,118,58,0.12), rgba(199,78,40,0.08));
-      border: 1px solid rgba(232,118,58,0.25);
-      border-radius: var(--radius);
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
+    .contact-bar { max-width: 940px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .contact-inner { background: linear-gradient(135deg, rgba(232,118,58,0.12), rgba(199,78,40,0.08)); border: 1px solid rgba(232,118,58,0.25); border-radius: var(--radius); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .contact-text { font-size: 14px; color: var(--text-secondary); }
     .contact-text strong { color: var(--text-primary); display: block; font-size: 16px; margin-bottom: 2px; }
-
-    .btn-contact {
-      padding: 12px 24px;
-      background: linear-gradient(135deg, var(--accent), #c74e28);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: var(--transition);
-    }
-
+    .btn-contact { padding: 12px 24px; background: linear-gradient(135deg, var(--accent), #c74e28); color: #fff; border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; white-space: nowrap; transition: var(--transition); }
     .btn-contact:hover { box-shadow: 0 4px 20px var(--accent-glow); }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 2.5rem 2rem;
-      color: var(--text-muted);
-      font-size: 12px;
-      border-top: 1px solid var(--border);
-    }
-
+    footer { text-align: center; padding: 2.5rem 2rem; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); }
     footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
@@ -569,13 +187,11 @@
 
   <div class="biz-strip">
     <div class="biz-strip-inner">
-      <div class="biz-item">
-        📍 <a href="https://www.google.com/maps/search/Gadime+Kosovo" target="_blank" rel="noopener">Magjistrale Prishtinë–Ferizaj (Gadime)</a>
-      </div>
+      <div class="biz-item">📍 <a href="https://www.google.com/maps/search/Gadime+Kosovo" target="_blank" rel="noopener">Magjistrale Prishtinë–Ferizaj (Gadime)</a></div>
       <div class="biz-divider"></div>
       <div class="biz-item">🛃 Doganim &amp; inspektim</div>
       <div class="biz-divider"></div>
-      <div class="biz-item">🚚 Transport deri në Kosovë</div>
+      <div class="biz-item">🚢 Transport RoRo nga Koreja</div>
       <div class="biz-divider"></div>
       <div class="biz-item">💳 Pagesa në Kosovë</div>
       <div class="biz-divider"></div>
@@ -583,23 +199,32 @@
     </div>
   </div>
 
-  <!-- Page Hero -->
   <section class="page-hero">
     <div class="page-hero-label">Auto Korea Blendi</div>
     <h1 class="page-hero-title">Kalkulator <span>Dogane</span></h1>
-    <p class="page-hero-sub">Llogarit koston e doganimit, TVSH-së dhe transportit për makinën tuaj nga Koreja.</p>
+    <p class="page-hero-sub">Llogarit koston e plotë të importit — Kosovë &amp; Shqipëri (Durrës). RoRo transport i përfshirë.</p>
   </section>
 
-  <!-- Calculator -->
   <div class="calc-section">
+
+    <!-- Country tabs -->
+    <div class="country-tabs">
+      <button class="tab-btn active" id="tabKs" onclick="switchTab('ks')">
+        🇽🇰 Kosovë <span class="tab-sub">(kryesor)</span>
+      </button>
+      <button class="tab-btn" id="tabAl" onclick="switchTab('al')">
+        🇦🇱 Shqipëri <span class="tab-sub">Durrës</span>
+      </button>
+    </div>
+
     <div class="calc-grid">
 
-      <!-- Input form -->
+      <!-- Inputs -->
       <div class="calc-card">
         <div class="calc-card-title">Të dhënat e makinës</div>
 
         <div class="field-group">
-          <label class="field-label" for="carPrice">Çmimi i makinës (€)</label>
+          <label class="field-label" for="carPrice">Çmimi i makinës në Kore (€)</label>
           <input class="field-input" id="carPrice" type="number" min="500" placeholder="p.sh. 25000" />
         </div>
 
@@ -630,14 +255,22 @@
             <option value="dizel">Dizel</option>
             <option value="benzin">Benzin</option>
             <option value="hibrid">Hibrid</option>
-            <option value="elektrik">Elektrik</option>
+            <option value="elektrik">Elektrik (0% akcizë)</option>
           </select>
         </div>
 
+        <div class="calc-card-title" style="margin-top:1.25rem">Transport (RoRo)</div>
+
         <div class="field-group">
-          <label class="field-label" for="shippingCost">Kosto transport estimim (€)</label>
-          <input class="field-input" id="shippingCost" type="number" min="0" value="1200" />
-          <span class="field-hint">Transport nga Koreja deri në Kosovë</span>
+          <label class="field-label" for="roroKorea">Koreja → Durrës (anije RoRo) (€)</label>
+          <input class="field-input" id="roroKorea" type="number" min="0" value="1050" />
+          <span class="field-hint">Çmim mesatar detare — mund ta ndryshosh</span>
+        </div>
+
+        <div class="field-group field-overland" id="overlandGroup">
+          <label class="field-label" for="overlandKs">Durrës → Kosovë (tokë) (€)</label>
+          <input class="field-input" id="overlandKs" type="number" min="0" value="280" />
+          <span class="field-hint">Transport me kamion nga porti</span>
         </div>
 
         <button class="btn-calc" onclick="calculate()">Llogarit Koston</button>
@@ -652,11 +285,32 @@
           </div>
         </div>
         <div id="resultsContent" style="display:none">
-          <div class="calc-card-title">Rezultati i llogaritjes</div>
+          <div class="results-card-header">
+            <div class="results-card-title" id="resultsTitle">🇽🇰 Rezultati — Kosovë</div>
+          </div>
           <div id="resultRows"></div>
           <div class="result-total" id="resultTotal"></div>
+
+          <!-- Compare box -->
+          <div class="compare-box" id="compareBox">
+            <div class="compare-title">Krahasim çmim i plotë</div>
+            <div class="compare-row">
+              <div class="compare-item">
+                <span class="compare-flag">🇽🇰</span>
+                <div class="compare-country">Kosovë</div>
+                <div class="compare-price" id="cmpKs">—</div>
+              </div>
+              <div class="compare-vs">vs</div>
+              <div class="compare-item">
+                <span class="compare-flag">🇦🇱</span>
+                <div class="compare-country">Shqipëri</div>
+                <div class="compare-price" id="cmpAl">—</div>
+              </div>
+            </div>
+          </div>
+
           <div class="disclaimer">
-            ⚠️ Kjo është vlerësim i përafërt bazuar në normat doganore të Kosovës. Kostoja reale mund të ndryshojë. Kontaktoni Auto Korea Blendi për çmim të saktë.
+            ⚠️ Vlerësim i përafërt. Tarifat mund të ndryshojnë sipas ligjit doganor. Kontaktoni Auto Korea Blendi për çmim të saktë.
           </div>
         </div>
       </div>
@@ -671,12 +325,12 @@
       <div class="service-card">
         <div class="service-icon">🛃</div>
         <div class="service-name">Doganim &amp; Inspektim</div>
-        <div class="service-sub">Kujdesemi për të gjithë procesin e doganimit dhe inspektimit teknik në Kosovë.</div>
+        <div class="service-sub">Kujdesemi për të gjithë procesin e doganimit dhe inspektimit teknik.</div>
       </div>
       <div class="service-card">
         <div class="service-icon">🚢</div>
-        <div class="service-name">Transport deri në Kosovë</div>
-        <div class="service-sub">Organizojmë transportin e makinës nga Koreja e Jugut deri tek porta juaj.</div>
+        <div class="service-name">Transport RoRo nga Koreja</div>
+        <div class="service-sub">Organizojmë transport me anije RoRo nga Koreja deri në Durrës dhe pastaj tokë deri tek porta juaj.</div>
       </div>
       <div class="service-card">
         <div class="service-icon">💳</div>
@@ -686,7 +340,6 @@
     </div>
   </div>
 
-  <!-- Contact bar -->
   <div class="contact-bar">
     <div class="contact-inner">
       <div class="contact-text">
@@ -703,122 +356,137 @@
   </footer>
 
   <script>
+    var activeTab = 'ks';
+    var lastResult = null;
+
     // ── Populate year dropdown ──
     (function () {
-      const sel = document.getElementById('carYear');
-      const now = new Date().getFullYear();
-      for (let y = now; y >= 2005; y--) {
-        sel.add(new Option(y, y));
-      }
+      var sel = document.getElementById('carYear');
+      var now = new Date().getFullYear();
+      for (var y = now; y >= 2005; y--) sel.add(new Option(y, y));
     })();
 
-    // ── Kosovo customs rates (approximate) ──
-    // Source: Kosovo Law on Customs Tariff + VAT Law
-    function exciseTax(ccTier, ageYears, fuel) {
+    // ── Tab switching ──
+    function switchTab(tab) {
+      activeTab = tab;
+      document.getElementById('tabKs').classList.toggle('active', tab === 'ks');
+      document.getElementById('tabAl').classList.toggle('active', tab === 'al');
+      document.getElementById('overlandGroup').style.display = tab === 'ks' ? '' : 'none';
+      if (lastResult) renderResult(lastResult);
+    }
+
+    // ── Kosovo excise (€ flat per CC tier) ──
+    function exciseKs(ccTier, ageYears, fuel) {
       if (fuel === 'elektrik') return 0;
-
-      const baseRates = {
-        1000: 40,
-        1500: 90,
-        2000: 180,
-        2500: 420,
-        3000: 700,
-        3500: 1100,
-        4000: 1800,
-      };
-
-      let base = baseRates[ccTier] || 180;
-
-      // Age surcharge
-      if (ageYears >= 12)      base *= 2.5;
-      else if (ageYears >= 9)  base *= 2.0;
-      else if (ageYears >= 6)  base *= 1.5;
-      else if (ageYears >= 3)  base *= 1.2;
-
-      // Hybrid discount
+      var base = { 1000:40, 1500:90, 2000:180, 2500:420, 3000:700, 3500:1100, 4000:1800 }[ccTier] || 180;
+      if (ageYears >= 12)     base *= 2.5;
+      else if (ageYears >= 9) base *= 2.0;
+      else if (ageYears >= 6) base *= 1.5;
+      else if (ageYears >= 3) base *= 1.2;
       if (fuel === 'hibrid') base *= 0.6;
-
       return Math.round(base);
     }
 
-    function fmt(n) {
-      return '€' + Math.round(n).toLocaleString('de-DE');
+    // ── Albania excise (~25% lower, same structure) ──
+    function exciseAl(ccTier, ageYears, fuel) {
+      if (fuel === 'elektrik') return 0;
+      var base = { 1000:30, 1500:70, 2000:140, 2500:320, 3000:530, 3500:850, 4000:1400 }[ccTier] || 140;
+      if (ageYears >= 12)     base *= 2.5;
+      else if (ageYears >= 9) base *= 2.0;
+      else if (ageYears >= 6) base *= 1.5;
+      else if (ageYears >= 3) base *= 1.2;
+      if (fuel === 'hibrid') base *= 0.6;
+      return Math.round(base);
     }
 
-    function row(label, sub, val, accent) {
-      return `<div class="result-row">
-        <div class="result-label">${label}${sub ? `<small>${sub}</small>` : ''}</div>
-        <div class="result-val" style="${accent ? 'color:var(--accent)' : ''}">${val}</div>
-      </div>`;
+    function fmt(n) { return '€' + Math.round(n).toLocaleString('de-DE'); }
+
+    function row(label, sub, val) {
+      return '<div class="result-row"><div class="result-label">' + label +
+        (sub ? '<small>' + sub + '</small>' : '') +
+        '</div><div class="result-val">' + val + '</div></div>';
+    }
+
+    function cifRow(label, sub, val) {
+      return '<div class="result-row cif-row"><div class="result-label"><strong style="color:var(--text-primary)">' + label + '</strong>' +
+        (sub ? '<small>' + sub + '</small>' : '') +
+        '</div><div class="result-val cif-val">' + val + '</div></div>';
     }
 
     function calculate() {
-      const price    = parseFloat(document.getElementById('carPrice').value);
-      const yearVal  = parseInt(document.getElementById('carYear').value);
-      const ccTier   = parseInt(document.getElementById('engineCC').value);
-      const fuel     = document.getElementById('fuelType').value;
-      const shipping = parseFloat(document.getElementById('shippingCost').value) || 1200;
+      var price   = parseFloat(document.getElementById('carPrice').value);
+      var yearVal = parseInt(document.getElementById('carYear').value);
+      var ccTier  = parseInt(document.getElementById('engineCC').value);
+      var fuel    = document.getElementById('fuelType').value;
+      var roro    = parseFloat(document.getElementById('roroKorea').value) || 0;
+      var overl   = parseFloat(document.getElementById('overlandKs').value) || 0;
 
-      if (!price || price < 100) {
-        alert('Ju lutem shkruani çmimin e makinës.');
-        return;
-      }
-      if (!yearVal) {
-        alert('Ju lutem zgjidhni vitin e prodhimit.');
-        return;
-      }
-      if (!ccTier) {
-        alert('Ju lutem zgjidhni cilindratën.');
-        return;
-      }
+      if (!price || price < 100) { alert('Ju lutem shkruani çmimin e makinës.'); return; }
+      if (!yearVal)              { alert('Ju lutem zgjidhni vitin e prodhimit.'); return; }
+      if (!ccTier)               { alert('Ju lutem zgjidhni cilindratën.'); return; }
 
-      const ageYears = new Date().getFullYear() - yearVal;
+      var age = new Date().getFullYear() - yearVal;
 
-      // CIF value = car price + shipping
-      const cif = price + shipping;
+      // Kosovo
+      var ksCIF   = price + roro + overl;
+      var ksDuty  = fuel === 'elektrik' ? 0 : ksCIF * 0.10;
+      var ksVAT   = (ksCIF + ksDuty) * 0.18;
+      var ksExc   = exciseKs(ccTier, age, fuel);
+      var ksTotal = price + roro + overl + ksDuty + ksVAT + ksExc;
 
-      // Import duty: 10% on CIF
-      const importDuty = fuel === 'elektrik' ? 0 : cif * 0.10;
+      // Albania
+      var alCIF   = price + roro;
+      var alDuty  = fuel === 'elektrik' ? 0 : alCIF * 0.10;
+      var alVAT   = (alCIF + alDuty) * 0.20;
+      var alExc   = exciseAl(ccTier, age, fuel);
+      var alTotal = price + roro + alDuty + alVAT + alExc;
 
-      // VAT: 18% on (CIF + import duty)
-      const vat = (cif + importDuty) * 0.18;
+      lastResult = { price, roro, overl, age, fuel, ccTier,
+        ks: { cif: ksCIF, duty: ksDuty, vat: ksVAT, exc: ksExc, total: ksTotal },
+        al: { cif: alCIF, duty: alDuty, vat: alVAT, exc: alExc, total: alTotal }
+      };
 
-      // Excise
-      const excise = exciseTax(ccTier, ageYears, fuel);
-
-      // Total
-      const total = price + shipping + importDuty + vat + excise;
-
-      // Render
-      const rows = [
-        row('Çmimi i makinës', 'Vlera e blerjes', fmt(price)),
-        row('Transport', 'Korea → Kosovë (estimim)', fmt(shipping)),
-        row('Vlera doganore (CIF)', 'Çmimi + transport', fmt(cif)),
-        row('Dogana import', fuel === 'elektrik' ? '0% (veturë elektrike)' : '10% e vlerës CIF', fmt(importDuty)),
-        row('TVSH', '18% e (CIF + dogana)', fmt(vat)),
-        row('Akciza', `Bazuar në cilindratë (${ageYears} vjet)`, fmt(excise)),
-      ];
-
-      document.getElementById('resultRows').innerHTML = rows.join('');
-      document.getElementById('resultTotal').innerHTML = `
-        <div class="result-total-label">Total i përafërt</div>
-        <div class="result-total-val">${fmt(total)}</div>
-      `;
+      renderResult(lastResult);
 
       document.getElementById('resultsPlaceholder').style.display = 'none';
       document.getElementById('resultsContent').style.display = 'block';
     }
 
-    // ── Nav ──
-    function openNav() {
-      document.getElementById('mainNav').classList.add('open');
-      document.body.style.overflow = 'hidden';
+    function renderResult(r) {
+      var isKs = activeTab === 'ks';
+      var d    = isKs ? r.ks : r.al;
+      var flag = isKs ? '🇽🇰' : '🇦🇱';
+      var name = isKs ? 'Kosovë' : 'Shqipëri (Durrës)';
+      var vatPct = isKs ? '18%' : '20%';
+
+      document.getElementById('resultsTitle').textContent = flag + ' Rezultati — ' + name;
+
+      var rows = '';
+      rows += row('Çmimi i makinës', 'Vlera e blerjes', fmt(r.price));
+      rows += row('RoRo (Koreja → Durrës)', 'Transport detar', fmt(r.roro));
+      if (isKs) rows += row('Durrës → Kosovë', 'Transport tokësor', fmt(r.overl));
+      rows += cifRow('CIF (baza doganore)', 'Çmimi + të gjithë transportin', fmt(d.cif));
+      rows += row('Dogana import', r.fuel === 'elektrik' ? '0% (veturë elektrike)' : '10% e vlerës CIF', fmt(d.duty));
+      rows += row('TVSH ' + vatPct, vatPct + ' e (CIF + dogana)', fmt(d.vat));
+      rows += row('Akciza', 'Bazuar në cilindratë (' + r.age + ' vjet)', fmt(d.exc));
+
+      document.getElementById('resultRows').innerHTML = rows;
+      document.getElementById('resultTotal').innerHTML =
+        '<div class="result-total-label">Çmimi i plotë (landed)<small>makina + transport + doganë</small></div>' +
+        '<div class="result-total-val">' + fmt(d.total) + '</div>';
+
+      // Compare
+      var cmpKs = document.getElementById('cmpKs');
+      var cmpAl = document.getElementById('cmpAl');
+      cmpKs.textContent = fmt(r.ks.total);
+      cmpAl.textContent = fmt(r.al.total);
+      cmpKs.className = 'compare-price' + (isKs ? ' active' : '');
+      cmpAl.className = 'compare-price' + (!isKs ? ' active' : '');
     }
 
-    function closeNav() {
-      document.getElementById('mainNav').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+    // ── Nav ──
+    function openNav() { document.getElementById('mainNav').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeNav() { document.getElementById('mainNav').classList.remove('open'); document.body.style.overflow = ''; }
   </script>
 
 </body>
